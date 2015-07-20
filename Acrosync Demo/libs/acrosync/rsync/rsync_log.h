@@ -16,7 +16,7 @@
 #ifndef INCLUDED_RSYNC_LOG_H
 #define INCLUDED_RSYNC_LOG_H
 
-#include <block/block_out.h>
+#include "block/block_out.h"
 
 #include <string>
 #include <sstream>

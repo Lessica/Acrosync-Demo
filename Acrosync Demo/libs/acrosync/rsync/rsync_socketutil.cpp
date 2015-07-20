@@ -36,12 +36,12 @@
 #define SOCKET_ERROR -1
 #endif
 
-#include <rsync/rsync_socketutil.h>
-#include <rsync/rsync_util.h>
+#include "rsync_socketutil.h"
+#include "rsync_util.h"
 
-#include <rsync/rsync_log.h>
+#include "rsync_log.h"
 
-#include <qi/qi_build.h>
+#include "qi/qi_build.h"
 
 namespace rsync
 {
@@ -246,14 +246,12 @@ int SocketUtil::read(int socket, char *buffer, int size)
     if (rc == -1) {
         if (errno != EAGAIN) {
             LOG_ERROR(RSYNC_SOCKET) << "Error reading from socket: " << Util::getLastError() << LOG_END
-            close(sock);
             return -1;
         } else {
             return 0;
         }
     } else if (rc == 0) {
         LOG_ERROR(RSYNC_SOCKET) << "Socket was closed unexpectedly" << LOG_END
-        close(sock);
         return -1;
     }
     return rc;
@@ -265,14 +263,12 @@ int SocketUtil::write(int socket, const char *buffer, int size)
     if (rc == -1) {
         if (errno != EAGAIN) {
             LOG_ERROR(RSYNC_SOCKET) << "Error writing to socket: " << Util::getLastError() << LOG_END
-            close(sock);
             return -1;
         } else {
             return 0;
         }
     } else if (rc == 0) {
         LOG_ERROR(RSYNC_SOCKET) << "Socket was closed unexpectedly" << LOG_END
-        close(sock);
         return -1;
     }
     return rc;

@@ -16,9 +16,9 @@
 #ifndef INCLUDED_RSYNC_SSHIO_H
 #define INCLUDED_RSYNC_SSHIO_H
 
-#include <rsync/rsync_io.h>
+#include "rsync_io.h"
 
-#include <block/block_out.h>
+#include "block/block_out.h"
 
 #include <list>
 #include <string>

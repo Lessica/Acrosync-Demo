@@ -13,10 +13,10 @@
 // PURPOSE, QUIET ENJOYMENT, OR NON-INFRINGEMENT. See the RPL for specific
 // language governing rights and limitations under the RPL. 
 
-#include <rsync/rsync_entry.h>
+#include "rsync_entry.h"
 
-#include <testutil/testutil_assert.h>
-#include <testutil/testutil_newdeletemonitor.h>
+#include "testutil/testutil_assert.h"
+#include "testutil/testutil_newdeletemonitor.h"
 
 #include <algorithm>
 #include <vector>
@@ -25,7 +25,7 @@
 
 
 //qi: TEST_PROGRAM = 1
-#include <qi/qi_build.h>
+#include "qi/qi_build.h"
 
 using namespace rsync;
 

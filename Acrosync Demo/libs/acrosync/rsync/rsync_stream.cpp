@@ -13,11 +13,11 @@
 // PURPOSE, QUIET ENJOYMENT, OR NON-INFRINGEMENT. See the RPL for specific
 // language governing rights and limitations under the RPL. 
 
-#include <rsync/rsync_stream.h>
+#include "rsync_stream.h"
 
-#include <rsync/rsync_log.h>
-#include <rsync/rsync_timeutil.h>
-#include <rsync/rsync_util.h>
+#include "rsync_log.h"
+#include "rsync_timeutil.h"
+#include "rsync_util.h"
 
 #include <sstream>
 
@@ -31,7 +31,7 @@
 #include <openssl/buffer.h>
 #include <openssl/md4.h>
 
-#include <qi/qi_build.h>
+#include "qi/qi_build.h"
 
 namespace rsync
 {
@@ -436,9 +436,9 @@ void Stream::login(const char *remoteCommand, int *protocol, std::vector<std::st
         if (line.compare(0, 18, "@RSYNCD: AUTHREQD ") == 0) {
             Util::md_struct mdContext;
             Util::md_init(*protocol, &mdContext);
-            Util::md_update(*protocol, &mdContext, password.c_str(), password.size());
+            Util::md_update(*protocol, &mdContext, password.c_str(), (int)password.size());
             std::string challenge = line.substr(18);
-            Util::md_update(*protocol, &mdContext, challenge.c_str(), challenge.size());
+            Util::md_update(*protocol, &mdContext, challenge.c_str(), (int)challenge.size());
             char digest[16];
             Util::md_final(*protocol, &mdContext, digest);
             std::string response = base64_encode(digest, sizeof(digest));
@@ -934,7 +934,7 @@ void Stream::writeIndex(int32_t index)
         *ptr++ = diff >> 8;
         *ptr++ = diff & 0xff;
     }
-    write(bytes, ptr - bytes);
+    write(bytes, (int)(ptr - bytes));
 }
 
 std::string Stream::readLine()
@@ -960,7 +960,7 @@ void Stream::writeLine(std::string line, bool appendNewLine)
     if (appendNewLine && (!line.size() || line[line.size() - 1] != '\n')) {
         line.push_back('\n');
     }
-    int size = line.size();
+    int size = (int)line.size();
     if (!appendNewLine) {
         ++size;
     }

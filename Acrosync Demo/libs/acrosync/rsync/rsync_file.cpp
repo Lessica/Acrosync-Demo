@@ -13,13 +13,13 @@
 // PURPOSE, QUIET ENJOYMENT, OR NON-INFRINGEMENT. See the RPL for specific
 // language governing rights and limitations under the RPL. 
 
-#include <rsync/rsync_file.h>
+#include "rsync_file.h"
 
-#include <rsync/rsync_log.h>
-#include <rsync/rsync_pathutil.h>
-#include <rsync/rsync_util.h>
+#include "rsync_log.h"
+#include "rsync_pathutil.h"
+#include "rsync_util.h"
 
-#include <qi/qi_build.h>
+#include "qi/qi_build.h"
 
 #include <fcntl.h>
 #include <sys/stat.h>

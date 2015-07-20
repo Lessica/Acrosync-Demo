@@ -14,17 +14,17 @@
 // language governing rights and limitations under the RPL. 
 
 
-#include <rsync/rsync_stream.h>
+#include "rsync_stream.h"
 
 #include <cassert>
 #include <cstdio>
 #include <cstring>
 
-#include <testutil/testutil_assert.h>
-#include <testutil/testutil_newdeletemonitor.h>
+#include "testutil/testutil_assert.h"
+#include "testutil/testutil_newdeletemonitor.h"
 
 //qi: TEST_PROGRAM = 1
-#include <qi/qi_build.h>
+#include "qi/qi_build.h"
 
 
 using namespace rsync;

@@ -13,16 +13,16 @@
 // PURPOSE, QUIET ENJOYMENT, OR NON-INFRINGEMENT. See the RPL for specific
 // language governing rights and limitations under the RPL. 
 
-#include <rsync/rsync_sshio.h>
+#include "rsync_sshio.h"
 
-#include <rsync/rsync_log.h>
-#include <rsync/rsync_socketutil.h>
-#include <rsync/rsync_timeutil.h>
-#include <rsync/rsync_util.h>
+#include "rsync_log.h"
+#include "rsync_socketutil.h"
+#include "rsync_timeutil.h"
+#include "rsync_util.h"
 
 #include <libssh2.h>
 
-#include <qi/qi_build.h>
+#include "qi/qi_build.h"
 
 #include <vector>
 
@@ -63,7 +63,7 @@ void keyboardCallback(const char *name, int nameLength,
     (void)instructionLength;
     if (numPrompts == 1) {
         responses[0].text = ::strdup(g_password);
-        responses[0].length = ::strlen(g_password);
+        responses[0].length = (unsigned int)::strlen(g_password);
     }
     (void)prompts;
     (void)abstract;
@@ -178,7 +178,7 @@ void SSHIO::connect(const char *serverList, int port, const char *user, const ch
         
     }
 
-    const char *methods = libssh2_userauth_list(d_session, user, ::strlen(user));
+    const char *methods = libssh2_userauth_list(d_session, user, (unsigned int)::strlen(user));
 
     if (methods == NULL) {
         LOG_FATAL(SSH_AUTH) << "User '" << user << "' is not allowed to log in to '"
@@ -295,7 +295,7 @@ int SSHIO::read(char *buffer, int size)
         libssh2_channel_receive_window_adjust2(d_channel, minWindowSize * 2, 0, 0);
     }
 
-    int rc = libssh2_channel_read(d_channel, buffer, size);
+    int rc = (int)libssh2_channel_read(d_channel, buffer, size);
     if (rc > 0) {
         return rc;
     }
@@ -306,7 +306,7 @@ int SSHIO::read(char *buffer, int size)
 
 int SSHIO::write(const char *buffer, int size)
 {
-    int rc = libssh2_channel_write(d_channel, buffer, size);
+    int rc = (int)libssh2_channel_write(d_channel, buffer, size);
     if (rc > 0) {
         // Save rc and the first 4 bytes for dump() in case an error is encountered.
         uint64_t value = rc;
@@ -376,7 +376,7 @@ void SSHIO::checkError(int rc)
         // Get STDERR messages if there are any.
         char buffer[256];
         std::string message;
-        while ((rc = libssh2_channel_read_stderr(d_channel, buffer, sizeof(buffer) - 1)) > 0) {
+        while ((rc = (int)libssh2_channel_read_stderr(d_channel, buffer, sizeof(buffer) - 1)) > 0) {
             buffer[rc] = 0;
             message += buffer;
         }

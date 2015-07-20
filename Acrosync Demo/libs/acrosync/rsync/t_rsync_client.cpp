@@ -13,14 +13,14 @@
 // PURPOSE, QUIET ENJOYMENT, OR NON-INFRINGEMENT. See the RPL for specific
 // language governing rights and limitations under the RPL. 
 
-#include <rsync/rsync_client.h>
+#include "rsync_client.h"
 
-#include <rsync/rsync_entry.h>
-#include <rsync/rsync_file.h>
-#include <rsync/rsync_log.h>
-#include <rsync/rsync_pathutil.h>
-#include <rsync/rsync_socketutil.h>
-#include <rsync/rsync_sshio.h>
+#include "rsync_entry.h"
+#include "rsync_file.h"
+#include "rsync_log.h"
+#include "rsync_pathutil.h"
+#include "rsync_socketutil.h"
+#include "rsync_sshio.h"
 
 #include <libssh2.h>
 #include <openssl/md5.h>
@@ -34,12 +34,12 @@
 #include <cstring>
 #include <sstream>
 
-#include <testutil/testutil_assert.h>
-#include <testutil/testutil_newdeletemonitor.h>
+#include "testutil/testutil_assert.h"
+#include "testutil/testutil_newdeletemonitor.h"
 
 //qi: TEST_PROGRAM = 1
 //qi: LDFLAGS += -lssh2 -lssl -lcrypto -lz
-#include <qi/qi_build.h>
+#include "qi/qi_build.h"
 
 int g_cancelFlag = 0;
 

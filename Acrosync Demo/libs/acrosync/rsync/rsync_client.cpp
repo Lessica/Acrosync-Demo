@@ -13,16 +13,16 @@
 // PURPOSE, QUIET ENJOYMENT, OR NON-INFRINGEMENT. See the RPL for specific
 // language governing rights and limitations under the RPL. 
 
-#include <rsync/rsync_client.h>
+#include "rsync_client.h"
 
-#include <rsync/rsync_entry.h>
-#include <rsync/rsync_file.h>
-#include <rsync/rsync_log.h>
-#include <rsync/rsync_pathutil.h>
-#include <rsync/rsync_socketio.h>
-#include <rsync/rsync_sshio.h>
-#include <rsync/rsync_timeutil.h>
-#include <rsync/rsync_util.h>
+#include "rsync_entry.h"
+#include "rsync_file.h"
+#include "rsync_log.h"
+#include "rsync_pathutil.h"
+#include "rsync_socketio.h"
+#include "rsync_sshio.h"
+#include "rsync_timeutil.h"
+#include "rsync_util.h"
 
 #include <openssl/evp.h>
 
@@ -35,7 +35,7 @@
 #include <cstring>
 #include <ctime>
 
-#include <qi/qi_build.h>
+#include "qi/qi_build.h"
 
 namespace rsync
 {
@@ -427,8 +427,8 @@ void Client::sendChecksum(int index, const char *oldFile)
     // The old file will be divided into 'count' blocks each of which has a length of 'blockLength'.
     int32_t blockLength = getBlockLength(oldFileSize);
     int32_t md5Length = 16;
-    int32_t count = (oldFileSize - 1) / blockLength + 1;
-    int32_t remainder = oldFileSize - (count - 1) * blockLength;
+    int32_t count = (int32_t)((oldFileSize - 1) / blockLength + 1);
+    int32_t remainder = (int32_t)(oldFileSize - (count - 1) * blockLength);
 
     resizeChunk(blockLength);
 
@@ -922,7 +922,7 @@ void Client::sendEntry(Entry *entry, bool isTop, bool noDirContent)
     }
 
     int l1 = 0, l2;
-    int filePathLength = ::strlen(entry->getPath());
+    int filePathLength = (int)::strlen(entry->getPath());
     
     if (noDirContent && entry->isDirectory()) {
         if (d_protocol >= 30) {
@@ -1460,20 +1460,20 @@ void Client::remove(const char *remoteFile)
 
     std::string includeFilter("+ /");
     includeFilter += PathUtil::getBase(remotePath.c_str());
-    d_stream->writeInt32(includeFilter.size());
-    d_stream->write(includeFilter.c_str(), includeFilter.size());
+    d_stream->writeInt32((int32_t)includeFilter.size());
+    d_stream->write(includeFilter.c_str(), (int32_t)includeFilter.size());
 
     includeFilter += "/";
-    d_stream->writeInt32(includeFilter.size());
-    d_stream->write(includeFilter.c_str(), includeFilter.size());
+    d_stream->writeInt32((int32_t)includeFilter.size());
+    d_stream->write(includeFilter.c_str(), (int32_t)includeFilter.size());
 
     includeFilter += "**";
-    d_stream->writeInt32(includeFilter.size());
-    d_stream->write(includeFilter.c_str(), includeFilter.size());
+    d_stream->writeInt32((int32_t)includeFilter.size());
+    d_stream->write(includeFilter.c_str(), (int32_t)includeFilter.size());
 
     std::string excludeFilter("- *");
-    d_stream->writeInt32(excludeFilter.size());
-    d_stream->write(excludeFilter.c_str(), excludeFilter.size());
+    d_stream->writeInt32((int32_t)excludeFilter.size());
+    d_stream->write(excludeFilter.c_str(), (int32_t)excludeFilter.size());
 
     d_stream->writeInt32(0); 
     d_stream->flushWriteBuffer();

@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F255AA31B5C792800C62D28 /* rsync_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F255A871B5C792800C62D28 /* rsync_client.cpp */; };
+		0F255AA41B5C792800C62D28 /* rsync_entry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F255A891B5C792800C62D28 /* rsync_entry.cpp */; };
+		0F255AA51B5C792800C62D28 /* rsync_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F255A8B1B5C792800C62D28 /* rsync_file.cpp */; };
+		0F255AA61B5C792800C62D28 /* rsync_io.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F255A8D1B5C792800C62D28 /* rsync_io.cpp */; };
+		0F255AA71B5C792800C62D28 /* rsync_log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F255A8F1B5C792800C62D28 /* rsync_log.cpp */; };
+		0F255AA81B5C792800C62D28 /* rsync_pathutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F255A911B5C792800C62D28 /* rsync_pathutil.cpp */; };
+		0F255AA91B5C792800C62D28 /* rsync_socketio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F255A931B5C792800C62D28 /* rsync_socketio.cpp */; };
+		0F255AAA1B5C792800C62D28 /* rsync_socketutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F255A951B5C792800C62D28 /* rsync_socketutil.cpp */; };
+		0F255AAB1B5C792800C62D28 /* rsync_sshio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F255A971B5C792800C62D28 /* rsync_sshio.cpp */; };
+		0F255AAC1B5C792800C62D28 /* rsync_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F255A991B5C792800C62D28 /* rsync_stream.cpp */; };
+		0F255AAD1B5C792800C62D28 /* rsync_timeutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F255A9B1B5C792800C62D28 /* rsync_timeutil.cpp */; };
+		0F255AAE1B5C792800C62D28 /* rsync_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0F255A9D1B5C792800C62D28 /* rsync_util.cpp */; };
 		0F6AAFE21B5894A800A3035D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6AAFE11B5894A800A3035D /* main.m */; };
 		0F6AAFE51B5894A800A3035D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F6AAFE41B5894A800A3035D /* AppDelegate.m */; };
 		0F6AAFE81B5894A800A3035D /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0F6AAFE71B5894A800A3035D /* ViewController.mm */; };
@@ -15,6 +27,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F255A871B5C792800C62D28 /* rsync_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsync_client.cpp; sourceTree = "<group>"; };
+		0F255A881B5C792800C62D28 /* rsync_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsync_client.h; sourceTree = "<group>"; };
+		0F255A891B5C792800C62D28 /* rsync_entry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsync_entry.cpp; sourceTree = "<group>"; };
+		0F255A8A1B5C792800C62D28 /* rsync_entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsync_entry.h; sourceTree = "<group>"; };
+		0F255A8B1B5C792800C62D28 /* rsync_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsync_file.cpp; sourceTree = "<group>"; };
+		0F255A8C1B5C792800C62D28 /* rsync_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsync_file.h; sourceTree = "<group>"; };
+		0F255A8D1B5C792800C62D28 /* rsync_io.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsync_io.cpp; sourceTree = "<group>"; };
+		0F255A8E1B5C792800C62D28 /* rsync_io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsync_io.h; sourceTree = "<group>"; };
+		0F255A8F1B5C792800C62D28 /* rsync_log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsync_log.cpp; sourceTree = "<group>"; };
+		0F255A901B5C792800C62D28 /* rsync_log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsync_log.h; sourceTree = "<group>"; };
+		0F255A911B5C792800C62D28 /* rsync_pathutil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsync_pathutil.cpp; sourceTree = "<group>"; };
+		0F255A921B5C792800C62D28 /* rsync_pathutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsync_pathutil.h; sourceTree = "<group>"; };
+		0F255A931B5C792800C62D28 /* rsync_socketio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsync_socketio.cpp; sourceTree = "<group>"; };
+		0F255A941B5C792800C62D28 /* rsync_socketio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsync_socketio.h; sourceTree = "<group>"; };
+		0F255A951B5C792800C62D28 /* rsync_socketutil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsync_socketutil.cpp; sourceTree = "<group>"; };
+		0F255A961B5C792800C62D28 /* rsync_socketutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsync_socketutil.h; sourceTree = "<group>"; };
+		0F255A971B5C792800C62D28 /* rsync_sshio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsync_sshio.cpp; sourceTree = "<group>"; };
+		0F255A981B5C792800C62D28 /* rsync_sshio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsync_sshio.h; sourceTree = "<group>"; };
+		0F255A991B5C792800C62D28 /* rsync_stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsync_stream.cpp; sourceTree = "<group>"; };
+		0F255A9A1B5C792800C62D28 /* rsync_stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsync_stream.h; sourceTree = "<group>"; };
+		0F255A9B1B5C792800C62D28 /* rsync_timeutil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsync_timeutil.cpp; sourceTree = "<group>"; };
+		0F255A9C1B5C792800C62D28 /* rsync_timeutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsync_timeutil.h; sourceTree = "<group>"; };
+		0F255A9D1B5C792800C62D28 /* rsync_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsync_util.cpp; sourceTree = "<group>"; };
+		0F255A9E1B5C792800C62D28 /* rsync_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsync_util.h; sourceTree = "<group>"; };
+		0F255ABC1B5C7A3700C62D28 /* block_out.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = block_out.h; sourceTree = "<group>"; };
+		0F255AC01B5C7A3700C62D28 /* qi_build.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qi_build.h; sourceTree = "<group>"; };
+		0F255AC71B5C7A5600C62D28 /* testutil_assert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testutil_assert.h; sourceTree = "<group>"; };
+		0F255AC81B5C7A5600C62D28 /* testutil_newdeletemonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testutil_newdeletemonitor.h; sourceTree = "<group>"; };
 		0F6AAFDD1B5894A800A3035D /* Acrosync Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Acrosync Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F6AAFE11B5894A800A3035D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0F6AAFE31B5894A800A3035D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -37,6 +77,66 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F255A861B5C792800C62D28 /* rsync */ = {
+			isa = PBXGroup;
+			children = (
+				0F255AC61B5C7A5600C62D28 /* testutil */,
+				0F255ABB1B5C7A3700C62D28 /* block */,
+				0F255ABE1B5C7A3700C62D28 /* qi */,
+				0F255A871B5C792800C62D28 /* rsync_client.cpp */,
+				0F255A881B5C792800C62D28 /* rsync_client.h */,
+				0F255A891B5C792800C62D28 /* rsync_entry.cpp */,
+				0F255A8A1B5C792800C62D28 /* rsync_entry.h */,
+				0F255A8B1B5C792800C62D28 /* rsync_file.cpp */,
+				0F255A8C1B5C792800C62D28 /* rsync_file.h */,
+				0F255A8D1B5C792800C62D28 /* rsync_io.cpp */,
+				0F255A8E1B5C792800C62D28 /* rsync_io.h */,
+				0F255A8F1B5C792800C62D28 /* rsync_log.cpp */,
+				0F255A901B5C792800C62D28 /* rsync_log.h */,
+				0F255A911B5C792800C62D28 /* rsync_pathutil.cpp */,
+				0F255A921B5C792800C62D28 /* rsync_pathutil.h */,
+				0F255A931B5C792800C62D28 /* rsync_socketio.cpp */,
+				0F255A941B5C792800C62D28 /* rsync_socketio.h */,
+				0F255A951B5C792800C62D28 /* rsync_socketutil.cpp */,
+				0F255A961B5C792800C62D28 /* rsync_socketutil.h */,
+				0F255A971B5C792800C62D28 /* rsync_sshio.cpp */,
+				0F255A981B5C792800C62D28 /* rsync_sshio.h */,
+				0F255A991B5C792800C62D28 /* rsync_stream.cpp */,
+				0F255A9A1B5C792800C62D28 /* rsync_stream.h */,
+				0F255A9B1B5C792800C62D28 /* rsync_timeutil.cpp */,
+				0F255A9C1B5C792800C62D28 /* rsync_timeutil.h */,
+				0F255A9D1B5C792800C62D28 /* rsync_util.cpp */,
+				0F255A9E1B5C792800C62D28 /* rsync_util.h */,
+			);
+			name = rsync;
+			path = libs/acrosync/rsync;
+			sourceTree = "<group>";
+		};
+		0F255ABB1B5C7A3700C62D28 /* block */ = {
+			isa = PBXGroup;
+			children = (
+				0F255ABC1B5C7A3700C62D28 /* block_out.h */,
+			);
+			path = block;
+			sourceTree = "<group>";
+		};
+		0F255ABE1B5C7A3700C62D28 /* qi */ = {
+			isa = PBXGroup;
+			children = (
+				0F255AC01B5C7A3700C62D28 /* qi_build.h */,
+			);
+			path = qi;
+			sourceTree = "<group>";
+		};
+		0F255AC61B5C7A5600C62D28 /* testutil */ = {
+			isa = PBXGroup;
+			children = (
+				0F255AC71B5C7A5600C62D28 /* testutil_assert.h */,
+				0F255AC81B5C7A5600C62D28 /* testutil_newdeletemonitor.h */,
+			);
+			path = testutil;
+			sourceTree = "<group>";
+		};
 		0F6AAFD41B5894A800A3035D = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +156,7 @@
 		0F6AAFDF1B5894A800A3035D /* Acrosync Demo */ = {
 			isa = PBXGroup;
 			children = (
+				0F255A861B5C792800C62D28 /* rsync */,
 				0F6AAFE31B5894A800A3035D /* AppDelegate.h */,
 				0F6AAFE41B5894A800A3035D /* AppDelegate.m */,
 				0F6AAFE61B5894A800A3035D /* ViewController.h */,
@@ -146,9 +247,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F255AA91B5C792800C62D28 /* rsync_socketio.cpp in Sources */,
+				0F255AA61B5C792800C62D28 /* rsync_io.cpp in Sources */,
+				0F255AAD1B5C792800C62D28 /* rsync_timeutil.cpp in Sources */,
+				0F255AAC1B5C792800C62D28 /* rsync_stream.cpp in Sources */,
+				0F255AA41B5C792800C62D28 /* rsync_entry.cpp in Sources */,
+				0F255AAA1B5C792800C62D28 /* rsync_socketutil.cpp in Sources */,
+				0F255AAB1B5C792800C62D28 /* rsync_sshio.cpp in Sources */,
 				0F6AAFE81B5894A800A3035D /* ViewController.mm in Sources */,
+				0F255AA81B5C792800C62D28 /* rsync_pathutil.cpp in Sources */,
+				0F255AAE1B5C792800C62D28 /* rsync_util.cpp in Sources */,
 				0F6AAFE51B5894A800A3035D /* AppDelegate.m in Sources */,
+				0F255AA31B5C792800C62D28 /* rsync_client.cpp in Sources */,
 				0F6AAFE21B5894A800A3035D /* main.m in Sources */,
+				0F255AA71B5C792800C62D28 /* rsync_log.cpp in Sources */,
+				0F255AA51B5C792800C62D28 /* rsync_file.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,8 +378,11 @@
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					__APPLE__,
+					"DEBUG=1",
+				);
 				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/Acrosync Demo/libs/acrosync\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/libssh2-1.6.0/include\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/openssl-1.0.1p/include\"",
 				);
@@ -274,7 +390,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/Acrosync Demo/libs/acrosync-libs\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/openssl-libs\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/ssh-libs\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/z-libs\"",
@@ -282,7 +397,6 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
-					"-lacrosync",
 					"-lssh2",
 					"-lz",
 					"-lcrypto",
@@ -304,9 +418,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = __APPLE__;
 				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/Acrosync Demo/libs/acrosync\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/libssh2-1.6.0/include\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/openssl-1.0.1p/include\"",
 				);
@@ -314,7 +427,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/Acrosync Demo/libs/acrosync-libs\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/openssl-libs\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/ssh-libs\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/z-libs\"",
@@ -323,7 +435,6 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
-					"-lacrosync",
 					"-lssh2",
 					"-lz",
 					"-lcrypto",

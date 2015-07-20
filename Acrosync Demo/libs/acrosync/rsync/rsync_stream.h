@@ -16,7 +16,7 @@
 #ifndef INCLUDED_RSYNC_STREAM_H
 #define INCLUDED_RSYNC_STREAM_H
 
-#include <rsync/rsync_io.h>
+#include "rsync_io.h"
 
 #include <string>
 #include <vector>

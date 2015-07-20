@@ -56,7 +56,7 @@
                                     <action selector="passwordReturn:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="VQL-P8-Qhy"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="/root" borderStyle="roundedRect" placeholder="Remote Path" minimumFontSize="17" id="PE7-Hn-3sE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="/tmp/read" borderStyle="roundedRect" placeholder="Remote Path" minimumFontSize="17" id="PE7-Hn-3sE">
                                 <rect key="frame" x="44" y="271" width="112" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
@@ -66,7 +66,7 @@
                                     <action selector="remoteReturn:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="oRd-0l-IIA"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="/root" borderStyle="roundedRect" placeholder="Local Path" minimumFontSize="17" id="Luw-w6-tsf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="tmp" borderStyle="roundedRect" placeholder="Local Path" minimumFontSize="17" id="Luw-w6-tsf">
                                 <rect key="frame" x="164" y="271" width="112" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>

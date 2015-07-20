@@ -16,7 +16,7 @@
 #ifndef INCLUDED_RSYNC_UTIL_H
 #define INCLUDED_RSYNC_UTIL_H
 
-#include <rsync/rsync_entry.h>
+#include "rsync_entry.h"
 
 #include <openssl/md4.h>
 #include <openssl/md5.h>

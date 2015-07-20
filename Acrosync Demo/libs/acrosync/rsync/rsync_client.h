@@ -16,11 +16,11 @@
 #ifndef INCLUDED_RSYNC_CLIENT_H
 #define INCLUDED_RSYNC_CLIENT_H
 
-#include <rsync/rsync_stream.h>
-#include <rsync/rsync_io.h>
-#include <rsync/rsync_file.h>
+#include "rsync_stream.h"
+#include "rsync_io.h"
+#include "rsync_file.h"
 
-#include <block/block_out.h>
+#include "block/block_out.h"
 
 #include <string>
 #include <vector>

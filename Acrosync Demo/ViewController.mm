@@ -6,15 +6,15 @@
 //  Copyright © 2015年 Zheng. All rights reserved.
 //
 
-#include <rsync/rsync_client.h>
+#include "rsync_client.h"
 
-#include <rsync/rsync_entry.h>
-#include <rsync/rsync_file.h>
-#include <rsync/rsync_log.h>
-#include <rsync/rsync_pathutil.h>
-#include <rsync/rsync_socketutil.h>
-#include <rsync/rsync_sshio.h>
-#include <rsync/rsync_socketio.h>
+#include "rsync_entry.h"
+#include "rsync_file.h"
+#include "rsync_log.h"
+#include "rsync_pathutil.h"
+#include "rsync_socketutil.h"
+#include "rsync_sshio.h"
+#include "rsync_socketio.h"
 
 #include <libssh2.h>
 #include <openssl/md5.h>
@@ -52,6 +52,7 @@
 
 int g_cancelFlag = 0;
 
+// Standard Output Redirection
 - (void)redirectNotificationHandle:(NSNotification *)nf {
     NSData *data = [[nf userInfo] objectForKey:NSFileHandleNotificationDataItem];
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -86,11 +87,11 @@ int g_cancelFlag = 0;
     // Dispose of any resources that can be recreated.
 }
 
+// Main Sync Thread
 - (void) myThreadMain {
     rsync::SocketUtil::startup();
     
     BOOL sshEnabled = self.sshSwitch.on;
-    
     if (sshEnabled) {
         int rc = libssh2_init(0);
         if (rc != 0) {
