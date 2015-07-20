@@ -13,7 +13,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="sEL-fH-mZY">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="sEL-fH-mZY">
                                 <rect key="frame" x="227" y="70" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
@@ -26,7 +26,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="192.168.199.118" borderStyle="roundedRect" placeholder="Server" minimumFontSize="17" id="Wtk-x1-X3I">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="127.0.0.1" borderStyle="roundedRect" placeholder="Server" minimumFontSize="17" id="Wtk-x1-X3I">
                                 <rect key="frame" x="44" y="157" width="156" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
@@ -56,8 +56,8 @@
                                     <action selector="passwordReturn:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="VQL-P8-Qhy"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="/tmp/read" borderStyle="roundedRect" placeholder="Remote Path" minimumFontSize="17" id="PE7-Hn-3sE">
-                                <rect key="frame" x="44" y="271" width="112" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="/" borderStyle="roundedRect" placeholder="Remote Path" minimumFontSize="17" id="PE7-Hn-3sE">
+                                <rect key="frame" x="44" y="271" width="232" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -66,8 +66,8 @@
                                     <action selector="remoteReturn:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="oRd-0l-IIA"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="tmp" borderStyle="roundedRect" placeholder="Local Path" minimumFontSize="17" id="Luw-w6-tsf">
-                                <rect key="frame" x="164" y="271" width="112" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="/scripts" borderStyle="roundedRect" placeholder="Local Path" minimumFontSize="17" id="Luw-w6-tsf">
+                                <rect key="frame" x="44" y="309" width="232" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -77,7 +77,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kbZ-LT-NpX">
-                                <rect key="frame" x="96" y="309" width="35" height="30"/>
+                                <rect key="frame" x="83" y="347" width="35" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" title="Sync"/>
@@ -85,7 +85,7 @@
                                     <action selector="testButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kuv-9o-YgI"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="q7f-GD-4cK">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="q7f-GD-4cK">
                                 <rect key="frame" x="227" y="31" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
@@ -101,7 +101,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="58422" borderStyle="roundedRect" minimumFontSize="17" id="P1s-07-FfJ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="873" borderStyle="roundedRect" minimumFontSize="17" id="P1s-07-FfJ">
                                 <rect key="frame" x="208" y="157" width="68" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
@@ -112,7 +112,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ekY-tj-PXE">
-                                <rect key="frame" x="177" y="309" width="48" height="30"/>
+                                <rect key="frame" x="196" y="347" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <state key="normal" title="Cancel"/>
@@ -120,7 +120,7 @@
                                     <action selector="cancelTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JsD-dQ-N38"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="8AK-cs-o90">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="8AK-cs-o90">
                                 <rect key="frame" x="227" y="109" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
@@ -133,7 +133,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="read" borderStyle="roundedRect" placeholder="module" minimumFontSize="17" id="8Vn-3s-vut">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="backup" borderStyle="roundedRect" placeholder="module" minimumFontSize="17" id="8Vn-3s-vut">
                                 <rect key="frame" x="164" y="195" width="112" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
@@ -143,8 +143,13 @@
                                     <action selector="moduleReturn:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="oaH-Zi-JQ0"/>
                                 </connections>
                             </textField>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="D2W-E4-S6d">
+                                <rect key="frame" x="44" y="386" width="232" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                            </progressView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" id="6fB-Cl-Ob5">
-                                <rect key="frame" x="20" y="347" width="280" height="201"/>
+                                <rect key="frame" x="20" y="396" width="280" height="152"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -164,6 +169,7 @@
                         <outlet property="moduleField" destination="8Vn-3s-vut" id="Lcg-sh-IIb"/>
                         <outlet property="passwordField" destination="Atm-Pi-q6O" id="TPF-wN-fUg"/>
                         <outlet property="portField" destination="P1s-07-FfJ" id="RzM-cT-YvX"/>
+                        <outlet property="progressView" destination="D2W-E4-S6d" id="jix-RG-0R8"/>
                         <outlet property="remoteField" destination="PE7-Hn-3sE" id="trd-Id-Qk5"/>
                         <outlet property="serverField" destination="Wtk-x1-X3I" id="pqy-nH-Zpr"/>
                         <outlet property="sshSwitch" destination="q7f-GD-4cK" id="zCW-Sg-Xid"/>

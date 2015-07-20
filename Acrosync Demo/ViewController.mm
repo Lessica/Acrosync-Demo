@@ -45,12 +45,19 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UITextField *portField;
 @property (weak, nonatomic) IBOutlet UISwitch *debugSwitch;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 - (void) myThreadMain;
 @end
 
 @implementation ViewController 
 
+BOOL transfer = NO;
 int g_cancelFlag = 0;
+int64_t totalBytes = 0;
+int64_t physicalBytes = 0;
+int64_t logicalBytes = 0;
+int64_t skippedBytes = 0;
+NSTimer *_timer;
 
 // Standard Output Redirection
 - (void)redirectNotificationHandle:(NSNotification *)nf {
@@ -79,7 +86,20 @@ int g_cancelFlag = 0;
     // Do any additional setup after loading the view, typically from a nib.
     [self redirectSTD:STDERR_FILENO];
     [self redirectSTD:STDOUT_FILENO];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(refresh) userInfo:nil repeats:YES];
     self.logField.text = @"Ready.\n";
+}
+
+- (void)refresh {
+    if (transfer) {
+        NSLog(@"%lld/%lld Bytes", physicalBytes, totalBytes);
+        if (totalBytes > 0) {
+            [self.progressView setProgress:((float)physicalBytes / totalBytes) animated:YES];
+        }
+    } else {
+        totalBytes = physicalBytes = logicalBytes = skippedBytes = 0;
+        [self.progressView setProgress:0 animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,13 +120,6 @@ int g_cancelFlag = 0;
         }
     }
     
-    NSString *uploadState;
-    if (self.uploadSwitch.on) {
-        uploadState = @"upload";
-    } else {
-        uploadState = @"download";
-    }
-    const char *action = [uploadState UTF8String];
     const char *server = [[self.serverField text] UTF8String];
     const char *user = [[self.userField text] UTF8String];
     const char *password = [[self.passwordField text] UTF8String];
@@ -120,33 +133,41 @@ int g_cancelFlag = 0;
     
     if (self.debugSwitch.on) {
         rsync::Log::setLevel(rsync::Log::Debug);
+    } else {
+        rsync::Log::setLevel(rsync::Log::Fatal);
     }
     
     try {
         if (sshEnabled) {
             rsync::SSHIO sshio;
             sshio.connect(server, port, user, password, 0, 0);
+            
             rsync::Client client(&sshio, "rsync", 32, &g_cancelFlag);
-            if (::strcasecmp(action, "download") == 0) {
+            if (!self.uploadSwitch.on) {
                 client.download(localDir.c_str(), remoteDir.c_str(), temporaryFile.c_str());
-            } else if (::strcasecmp(action, "upload") == 0) {
-                client.upload(localDir.c_str(), remoteDir.c_str());
             } else {
-                LOG_ERROR(RSYNC_ERROR) << "Invalid action: " << action << LOG_END
+                client.upload(localDir.c_str(), remoteDir.c_str());
             }
         } else {
             rsync::SocketIO io;
+            NSLog(@"Connect %s...", server);
             io.connect(server, port, user, password, module.c_str());
-            rsync::Client client(&io, "rsync", 30, &g_cancelFlag);
-            if (::strcasecmp(action, "download") == 0) {
+            rsync::Client client(&io, "rsync", 29, &g_cancelFlag);
+            if (!self.uploadSwitch.on) {
+                client.setDeletionEnabled(true);
+                client.setSpeedLimits(50, 50);
+                client.setStatsAddresses(&totalBytes, &physicalBytes, &logicalBytes, &skippedBytes);
+                transfer = YES;
                 client.download(localDir.c_str(), remoteDir.c_str(), temporaryFile.c_str());
-            } else if (::strcasecmp(action, "upload") == 0) {
-                client.upload(localDir.c_str(), remoteDir.c_str());
+                [self refresh];
+                transfer = NO;
+                NSLog(@"Transfer ended, totalBytes %lld, physicalBytes %lld, logicalBytes %lld, skippedBytes %lld.", totalBytes, physicalBytes, logicalBytes, skippedBytes);
             } else {
-                LOG_ERROR(RSYNC_ERROR) << "Invalid action: " << action << LOG_END
+                client.upload(localDir.c_str(), remoteDir.c_str());
             }
         }
     } catch (rsync::Exception &e) {
+        transfer = NO;
         LOG_ERROR(RSYNC_ERROR) << "Sync failed: " << e.getMessage() << LOG_END
     }
     
@@ -167,6 +188,7 @@ int g_cancelFlag = 0;
 
 - (IBAction)cancelTapped:(id)sender {
     g_cancelFlag = 1;
+    transfer = NO;
     [self.view endEditing:YES];
 }
 

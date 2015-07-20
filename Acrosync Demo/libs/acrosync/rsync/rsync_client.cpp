@@ -281,11 +281,7 @@ int Client::readIndex()
 
 void Client::writeIndex(int index)
 {
-    if (d_protocol < 30) {
-        d_stream->writeInt32(index);
-    } else {
-        d_stream->writeIndex(index);
-    }
+    (d_protocol < 30) ? d_stream->writeInt32(index) : d_stream->writeIndex(index);
 }
 
 void Client::resizeChunk(int size)
@@ -623,22 +619,19 @@ int Client::download(const char *localTop, const char *remoteTop, const char *te
     std::vector<Entry*> localFiles, localDirectories;
     Util::EntryListReleaser localFilesReleaser(&localFiles);
 
-    if (!singleFile) {
-    localFiles.push_back(new Entry("./", true, 0, 0, 0));
-    }
+    if (!singleFile)
+        localFiles.push_back(new Entry("./", true, 0, 0, 0));
 
     // If 'includeFiles' is speicified, we'll create entries one by one from those included in 'includeFiles'.
     // Otherwise, we'll enumerate the entire directory recursively.
     if (includeFiles) {
-    for (std::set<std::string>::const_iterator iter = includeFiles->begin();
-            iter != includeFiles->end(); ++iter) {
-        Entry *entry = PathUtil::createEntry(localPath.c_str(), iter->c_str());
-        if (entry) {
-            entry->normalizePath();
-        localFiles.push_back(entry);
-            }
+        for (std::set<std::string>::const_iterator iter = includeFiles->begin(); iter != includeFiles->end(); ++iter) {
+                Entry *entry = PathUtil::createEntry(localPath.c_str(), iter->c_str());
+                if (entry) {
+                    entry->normalizePath();
+                    localFiles.push_back(entry);
+                }
         }
-
         std::sort(localFiles.begin() + 1, localFiles.end(), Entry::compareGlobally);
     } else {
         PathUtil::listDirectory(localPath.c_str(), "", &localFiles, &localDirectories, d_protocol > 29);
@@ -646,16 +639,13 @@ int Client::download(const char *localTop, const char *remoteTop, const char *te
             entry = localDirectories.back();
             localDirectories.pop_back();
             localFiles.push_back(entry);
-            PathUtil::listDirectory(localPath.c_str(), entry->getPath(), &localFiles, &localDirectories,
-                                    d_protocol > 29);
-
+            PathUtil::listDirectory(localPath.c_str(), entry->getPath(), &localFiles, &localDirectories, d_protocol > 29);
             d_stream->checkCancelFlag();
-    }
+        }
     }
 
-    if (statusOut.isConnected()) {
+    if (statusOut.isConnected())
         statusOut("Download starting...");
-    }
 
     std::vector<int> queue;         // store the indices of files needed to be downloaded
 
@@ -663,9 +653,7 @@ int Client::download(const char *localTop, const char *remoteTop, const char *te
     int i = begin;
     for (int index = begin; index < remoteFiles.size(); ++index) {
 
-        while (i < localFiles.size() && Entry::compareGlobally(localFiles[i], remoteFiles[index])) {
-            ++i;
-        }
+        while (i < localFiles.size() && Entry::compareGlobally(localFiles[i], remoteFiles[index])) ++i;
         std::string path = PathUtil::join(localPath.c_str(), remoteFiles[index]->getPath());
         if (i >= localFiles.size() || Entry::compareGlobally(remoteFiles[index], localFiles[i])) {
             // Local file/dir doesn't exist
@@ -708,9 +696,8 @@ int Client::download(const char *localTop, const char *remoteTop, const char *te
                 }
             } else {
                 *d_skippedBytes += remoteFiles[index]->getSize();
-                if (localFiles[i]->getMode() != remoteFiles[index]->getMode()) {
+                if (localFiles[i]->getMode() != remoteFiles[index]->getMode())
                     PathUtil::setMode(path.c_str(), remoteFiles[index]->getMode());
-                }
             }
         }
     }
@@ -748,9 +735,8 @@ int Client::download(const char *localTop, const char *remoteTop, const char *te
                 }
                 ++i;
 
-                if (i == queue.size()) {
+                if (i == queue.size())
                     writeIndex(Stream::INDEX_DONE);
-                }
             }
 
             // Try to flush the write buffer.  This is 'all or none' operation, meaning either it completes with a
@@ -760,22 +746,17 @@ int Client::download(const char *localTop, const char *remoteTop, const char *te
             // If any data is available for reading, we'll start receiving the file content
             if (d_stream->isDataAvailable()) {
                 int index = readIndex();
-                if (index == Stream::INDEX_DONE) {
-                    break;
-                }
+                if (index == Stream::INDEX_DONE) break;
 
-                if (index < 0 || index >= remoteFiles.size()) {
+                if (index < 0 || index >= remoteFiles.size())
                     LOG_FATAL(RSYNC_INDEX) << "Received an out-of-bound index: " << index << LOG_END;
-                }
 
-                if (phase == 1) {
+                if (phase == 1)
                     LOG_INFO(RSYNC_RETRY) << "Attempting to download '" << remoteFiles[index]->getPath() << "' again" << LOG_END
-                }
 
                 std::string oldFile = localPath.c_str();
-                if (!singleFile ) {
+                if (!singleFile)
                     oldFile = PathUtil::join(localPath.c_str(), remoteFiles[index]->getPath());
-                }
 
                 // Use the PartialFileKeeper class to keep the partially downloaded file if an error occurs
                 PartialFileKeeper keeper(temporaryFile, oldFile.c_str(), remoteFiles[index]->getMode());
@@ -807,9 +788,7 @@ int Client::download(const char *localTop, const char *remoteTop, const char *te
     // The following code removes local files that do not exist on the remote side.
     if (d_deletionEnabled) {
         for (size_t i = localFiles.size() - 1, index = remoteFiles.size() - 1; i > 0; --i) {
-            while (index > 0 && Entry::compareGlobally(localFiles[i], remoteFiles[index])) {
-                --index;
-            }
+            while (index > 0 && Entry::compareGlobally(localFiles[i], remoteFiles[index])) --index;
             if (index <= 0 || Entry::compareGlobally(remoteFiles[index], localFiles[i])) {
                 LOG_INFO(RSYN_DELETE) << "Deleted " << localFiles[i]->getPath() << LOG_END
                 std::string path = PathUtil::join(localTop, localFiles[i]->getPath());
@@ -828,13 +807,11 @@ int Client::download(const char *localTop, const char *remoteTop, const char *te
         while (directoryStack.size() > 1 && !directoryStack.back()->contains(entry)) {
             directoryStack.pop_back();
         }
-        if (entry->isDirectory()) {
+        if (entry->isDirectory())
             directoryStack.push_back(entry);
-        } else {
-            for (int i = 0; i < directoryStack.size(); ++i) {
+        else
+            for (int i = 0; i < directoryStack.size(); ++i)
                 directoryStack[i]->addSize(entry->getSize());
-            }
-        }
     }
 
     // Send the directory info out if needed.
@@ -871,9 +848,8 @@ bool Client::list(const char *path)
 
     while ((receiveEntry(&pathStr, &isDir, &size, &time, &mode, &symlink)) != 0) {
         Entry *entry = new Entry(pathStr.c_str(), isDir, size, time, mode);
-        if (entry->isLink()) {
+        if (entry->isLink())
             entry->setSymlink(symlink);
-        }
         remoteFiles.push_back(entry);
     }
 
@@ -890,9 +866,8 @@ bool Client::list(const char *path)
     }
 
     // Ignore the 'io_error' flag.
-    if (d_protocol < 30) {
+    if (d_protocol < 30)
         d_stream->readInt32();  // send_file_list: write_int(f, ignore_errors...)
-    }
 
     writeIndex(Stream::INDEX_DONE);
     writeIndex(Stream::INDEX_DONE);
@@ -907,100 +882,83 @@ void Client::sendEntry(Entry *entry, bool isTop, bool noDirContent)
 {
     int xflags = XFLAGS_SAME_UID | XFLAGS_SAME_GID;
 
-    if (entry->getTime() == d_lastEntryTime) {
+    if (entry->getTime() == d_lastEntryTime)
         xflags |= XFLAGS_SAME_TIME;
-    }
 
-    if (isTop) {
+    if (isTop)
         xflags |= XFLAGS_TOP_DIR;
-    }
     
     uint32_t fileMode = entry->getMode();
 
-    if (d_lastEntryMode == fileMode) {
+    if (d_lastEntryMode == fileMode)
         xflags |= XFLAGS_SAME_MODE;
-    }
 
     int l1 = 0, l2;
     int filePathLength = (int)::strlen(entry->getPath());
     
     if (noDirContent && entry->isDirectory()) {
-        if (d_protocol >= 30) {
+        if (d_protocol >= 30)
             xflags |= XFLAGS_NO_CONTENT_DIR;
-        } else {
+        else
             --filePathLength;
-        }
     }
     
     if (d_lastEntryPath.size()) {
-        for (; l1 < static_cast<int>(d_lastEntryPath.size()) && l1 < 255; ++l1) {
-            if (entry->getPath()[l1] != d_lastEntryPath[l1]) {
-                break;
-            }
-        }
+        for (; l1 < static_cast<int>(d_lastEntryPath.size()) && l1 < 255; ++l1)
+            if (entry->getPath()[l1] != d_lastEntryPath[l1]) break;
         l2 = filePathLength - l1;
-    } else {
+    }
+    else
         l2 = filePathLength;
-    }
 
-    if (l1 > 0) {
+    if (l1 > 0)
         xflags |= XFLAGS_SAME_NAME;
-    }
 
-    if (l2 > 255) {
+    if (l2 > 255)
         xflags |= XFLAGS_LONG_NAME;
-    }
 
-    if (xflags == 0 && !entry->isDirectory()) {
+    if (xflags == 0 && !entry->isDirectory())
         xflags |= XFLAGS_TOP_DIR;
-    }
     if (xflags == 0 || (xflags & 0xFF00)) {
         xflags |= XFLAGS_EXTENDED_FLAGS;
         d_stream->writeUInt16(xflags);
-    } else {
+    }
+    else
         d_stream->writeUInt8(xflags);
-    }
 
-    if (xflags & XFLAGS_SAME_NAME) {
+    if (xflags & XFLAGS_SAME_NAME)
         d_stream->writeUInt8(l1);
-    }
-    if (xflags & XFLAGS_LONG_NAME) {
-        if (d_protocol < 30) {
+    if (xflags & XFLAGS_LONG_NAME)
+        if (d_protocol < 30)
             d_stream->writeInt32(l2);
-        } else {
+        else
             d_stream->writeVariableInt32(l2);
-        }
-    } else {
+    else
         d_stream->writeUInt8(l2);
-    }
     d_stream->write(entry->getPath() + l1, l2);
 
     int64_t size = entry->getSize();
 
-    if (d_protocol < 30) {
+    if (d_protocol < 30)
         d_stream->writeInt64(size);
-    } else {
+    else
         d_stream->writeVariableInt64(size, 3);
-    }
 
     if (!(xflags & XFLAGS_SAME_TIME)) {
-        if (d_protocol < 30) {
+        if (d_protocol < 30)
             d_stream->writeInt64(entry->getTime());
-        } else {
+        else
             d_stream->writeVariableInt64(entry->getTime(), 4);
-        }
     }
 
-    if (!(xflags & XFLAGS_SAME_MODE)) {
+    if (!(xflags & XFLAGS_SAME_MODE))
         d_stream->writeInt32(fileMode);
-    }
 
     if (entry->isLink()) {
-        if (d_protocol < 30) {
+        if (d_protocol < 30)
             d_stream->writeInt32(entry->getSymlinkLength());
-        } else {
+        else
             d_stream->writeVariableInt32(entry->getSymlinkLength());
-        }
         d_stream->write(entry->getSymlink(), entry->getSymlinkLength());
     }
 
@@ -1023,9 +981,8 @@ bool Client::sendFile(int index, const char *remotePath, const char *localPath)
 
     // This is one byte for fnamecmp_type; ignore its value, just forward it 
     uint8_t fnamecmp_type = 0;
-    if (iflags & 0x0800) {
+    if (iflags & 0x0800)
         fnamecmp_type = d_stream->readUInt8();
-    }
 
     if (iflags & 0x1000) {
         LOG_FATAL("RSYNC_BUG") << "ITEM_XNAME_FOLLOWS flag not handled" << LOG_END
@@ -1070,9 +1027,8 @@ bool Client::sendFile(int index, const char *remotePath, const char *localPath)
     // Forward the index and the 'iflags' to the remote receiver.
     writeIndex(index);
     d_stream->writeUInt16(iflags);
-    if (iflags &0x0800) {
+    if (iflags &0x0800)
         d_stream->writeUInt8(fnamecmp_type);
-    }
     d_stream->writeInt32(count);
     d_stream->writeInt32(blockLength);
     d_stream->writeInt32(md5Length);
