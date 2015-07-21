@@ -1561,6 +1561,8 @@ void Client::start(const char *remotePath, bool isDownloading, bool recursive, b
             out << "--bwlimit=" << d_downloadLimit << " ";
             command += out.str();
         }
+    } else {
+        command += "--partial ";
     }
     
     // Uncomment these if you want logging on the server.  Note that '--log-file' isn't a valid option under the daemon
@@ -1625,9 +1627,9 @@ void Client::start(const char *remotePath, bool isDownloading, bool recursive, b
             LOG_FATAL(RSYNC_COMPAT) << "Server demands incremental directory recursion" << LOG_END
         }
 
-        /*if (compatibilityFlag & 0x8) {
+        if (compatibilityFlag & 0x8) {
             LOG_FATAL(RSYNC_SAFE_LIST) << "Server demands safe file lists" << LOG_END
-        }*/
+        }
     }
     
     d_checksumSeed = d_stream->readInt32();

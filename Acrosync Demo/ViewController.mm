@@ -109,6 +109,7 @@ NSTimer *_timer;
 
 // Main Sync Thread
 - (void) myThreadMain {
+    
     rsync::SocketUtil::startup();
     
     BOOL sshEnabled = self.sshSwitch.on;
@@ -127,9 +128,12 @@ NSTimer *_timer;
     
     std::string remoteDir = [[self.remoteField text] UTF8String];
     std::string module = [self.moduleField.text UTF8String];
-    NSString *localPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    
+    NSString *localPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     std::string localDir = rsync::PathUtil::join([localPath UTF8String], [[self.localField text] UTF8String]);
-    std::string temporaryFile = rsync::PathUtil::join([localPath UTF8String], "acrosync.part");
+    
+    NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    std::string temporaryFile = rsync::PathUtil::join([cachesPath UTF8String], "acrosync.part");
     
     if (self.debugSwitch.on) {
         rsync::Log::setLevel(rsync::Log::Debug);
@@ -140,31 +144,52 @@ NSTimer *_timer;
     try {
         if (sshEnabled) {
             rsync::SSHIO sshio;
-            sshio.connect(server, port, user, password, 0, 0);
             
+            NSLog(@"Connect %s:%d...", server, port);
+            sshio.connect(server, port, user, password, 0, 0);
             rsync::Client client(&sshio, "rsync", 32, &g_cancelFlag);
+            
+            client.setDeletionEnabled(true);
+            client.setSpeedLimits(50, 50);
+            client.setStatsAddresses(&totalBytes, &physicalBytes, &logicalBytes, &skippedBytes);
+            
+            transfer = YES;
+            
             if (!self.uploadSwitch.on) {
                 client.download(localDir.c_str(), remoteDir.c_str(), temporaryFile.c_str());
             } else {
                 client.upload(localDir.c_str(), remoteDir.c_str());
             }
+            
+            [self refresh];
+            transfer = NO;
+            NSLog(@"SSHIO Transfer ended, totalBytes %lld, physicalBytes %lld, logicalBytes %lld, skippedBytes %lld.", totalBytes, physicalBytes, logicalBytes, skippedBytes);
+            
         } else {
             rsync::SocketIO io;
-            NSLog(@"Connect %s...", server);
+            
+            NSLog(@"Connect %s:%d...", server, port);
             io.connect(server, port, user, password, module.c_str());
             rsync::Client client(&io, "rsync", 29, &g_cancelFlag);
+            
+            client.setDeletionEnabled(true);
+            client.setSpeedLimits(50, 50);
+            client.setStatsAddresses(&totalBytes, &physicalBytes, &logicalBytes, &skippedBytes);
+            
+            transfer = YES;
+            
             if (!self.uploadSwitch.on) {
-                client.setDeletionEnabled(true);
-                client.setSpeedLimits(50, 50);
-                client.setStatsAddresses(&totalBytes, &physicalBytes, &logicalBytes, &skippedBytes);
-                transfer = YES;
                 client.download(localDir.c_str(), remoteDir.c_str(), temporaryFile.c_str());
-                [self refresh];
-                transfer = NO;
-                NSLog(@"Transfer ended, totalBytes %lld, physicalBytes %lld, logicalBytes %lld, skippedBytes %lld.", totalBytes, physicalBytes, logicalBytes, skippedBytes);
             } else {
                 client.upload(localDir.c_str(), remoteDir.c_str());
             }
+            
+            [self refresh];
+            
+            transfer = NO;
+            
+            NSLog(@"SocketIO Transfer ended, totalBytes %lld, physicalBytes %lld, logicalBytes %lld, skippedBytes %lld.", totalBytes, physicalBytes, logicalBytes, skippedBytes);
+            
         }
     } catch (rsync::Exception &e) {
         transfer = NO;
@@ -174,6 +199,7 @@ NSTimer *_timer;
     if (sshEnabled) {
         libssh2_exit();
     }
+    
     rsync::SocketUtil::cleanup();
 }
 
