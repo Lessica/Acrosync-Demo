@@ -21,6 +21,7 @@
 
 #include <string>
 #include <vector>
+#include <set>
 
 #include <cassert>
 #include <cstdio>
@@ -84,8 +85,8 @@ NSTimer *_timer;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self redirectSTD:STDERR_FILENO];
-    [self redirectSTD:STDOUT_FILENO];
+    //[self redirectSTD:STDERR_FILENO];
+    //[self redirectSTD:STDOUT_FILENO];
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(refresh) userInfo:nil repeats:YES];
     self.logField.text = @"Ready.\n";
 }
@@ -130,6 +131,7 @@ NSTimer *_timer;
     std::string module = [self.moduleField.text UTF8String];
     
     NSString *localPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSLog(@"%@", localPath);
     std::string localDir = rsync::PathUtil::join([localPath UTF8String], [[self.localField text] UTF8String]);
     
     NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -149,7 +151,6 @@ NSTimer *_timer;
             sshio.connect(server, port, user, password, 0, 0);
             rsync::Client client(&sshio, "rsync", 32, &g_cancelFlag);
             
-            client.setDeletionEnabled(true);
             client.setSpeedLimits(50, 50);
             client.setStatsAddresses(&totalBytes, &physicalBytes, &logicalBytes, &skippedBytes);
             
@@ -172,16 +173,17 @@ NSTimer *_timer;
             io.connect(server, port, user, password, module.c_str());
             rsync::Client client(&io, "rsync", 29, &g_cancelFlag);
             
-            client.setDeletionEnabled(true);
-            client.setSpeedLimits(50, 50);
+            client.setSpeedLimits(64, 64);
             client.setStatsAddresses(&totalBytes, &physicalBytes, &logicalBytes, &skippedBytes);
             
             transfer = YES;
+            //std::set<std::string> includeFiles;
+            //includeFiles.insert("123.pdf");
             
             if (!self.uploadSwitch.on) {
-                client.download(localDir.c_str(), remoteDir.c_str(), temporaryFile.c_str());
+                client.download(localDir.c_str(), remoteDir.c_str(), temporaryFile.c_str()/*, &includeFiles*/);
             } else {
-                client.upload(localDir.c_str(), remoteDir.c_str());
+                client.upload(localDir.c_str(), remoteDir.c_str()/*, &includeFiles*/);
             }
             
             [self refresh];

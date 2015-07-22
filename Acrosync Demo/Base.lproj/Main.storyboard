@@ -66,7 +66,7 @@
                                     <action selector="remoteReturn:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="oRd-0l-IIA"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="/scripts" borderStyle="roundedRect" placeholder="Local Path" minimumFontSize="17" id="Luw-w6-tsf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="/books" borderStyle="roundedRect" placeholder="Local Path" minimumFontSize="17" id="Luw-w6-tsf">
                                 <rect key="frame" x="44" y="309" width="232" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
@@ -133,7 +133,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="backup" borderStyle="roundedRect" placeholder="module" minimumFontSize="17" id="8Vn-3s-vut">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test" borderStyle="roundedRect" placeholder="module" minimumFontSize="17" id="8Vn-3s-vut">
                                 <rect key="frame" x="164" y="195" width="112" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>

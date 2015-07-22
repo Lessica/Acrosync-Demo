@@ -692,65 +692,65 @@ std::string PathUtil::getCurrentDirectory()
 #include <unistd.h>
 #include <dirent.h>
 #include <utime.h>
-//
-//#ifdef __APPLE__
-//#include <iconv.h>
-//
-//class UTFConverter
-//{
-//public:
-//    
-//    static std::string convert (const char *input)
-//    {
-//        if (s_iconv_handle == (iconv_t) -1) {
-//            s_iconv_handle = iconv_open("UTF-8", "UTF-8-MAC");
-//            if (s_iconv_handle == (iconv_t) -1) {
-//                LOG_ERROR(ICONV_FAILURE) << "Failed to convert from UTF-8-MAC to UTF-8" << LOG_END
-//                return input;
-//            }
-//        }
-//        
-//        size_t inleft = strlen(input);
-//        const char *inbuf = input;
-//
-//        std::string output;
-//        
-//        do {
-//            size_t outleft = inleft;
-//            char *buffer = new char[outleft];
-//            
-//            char *outbuf = buffer;
-//            
-//            errno = 0;
-//            size_t converted = iconv(s_iconv_handle, (char **) &inbuf, &inleft, &outbuf, &outleft);
-//            output.append(buffer, outbuf - buffer);
-//            delete [] buffer;
-//            if (converted != -1 || errno == EINVAL) {
-//                // EINVAL: An incomplete multibyte sequence has been encoun­tered in the input.
-//                // We'll just truncate it and ignore it.
-//                break;
-//            }
-//            
-//            if (errno != E2BIG) {
-//                // An invalid multibyte sequence has been encountered in the input.
-//                // Bad input, we can't really recover from this.
-//                LOG_ERROR(ICONV_FAILURE) << "Failed to convert from UTF-8-MAC to UTF-8: invalid multibyte sequence" << LOG_END
-//                break;
-//            }
-//            // E2BIG: There is not sufficient room at *outbuf.
-//            // We just need to try again.
-//        } while (1);
-//        return output;
-//    }
-//    
-//private:
-//    static iconv_t s_iconv_handle;
-//};
-//
-//iconv_t UTFConverter::s_iconv_handle = (iconv_t)-1;
-//
-//#endif //__APPLE__
-//
+
+#ifdef __APPLE__
+#include <iconv.h>
+
+class UTFConverter
+{
+public:
+    
+    static std::string convert (const char *input)
+    {
+        if (s_iconv_handle == (iconv_t) -1) {
+            s_iconv_handle = iconv_open("UTF-8", "UTF-8-MAC");
+            if (s_iconv_handle == (iconv_t) -1) {
+                LOG_ERROR(ICONV_FAILURE) << "Failed to convert from UTF-8-MAC to UTF-8" << LOG_END
+                return input;
+            }
+        }
+        
+        size_t inleft = strlen(input);
+        const char *inbuf = input;
+
+        std::string output;
+        
+        do {
+            size_t outleft = inleft;
+            char *buffer = new char[outleft];
+            
+            char *outbuf = buffer;
+            
+            errno = 0;
+            size_t converted = iconv(s_iconv_handle, (char **) &inbuf, &inleft, &outbuf, &outleft);
+            output.append(buffer, outbuf - buffer);
+            delete [] buffer;
+            if (converted != -1 || errno == EINVAL) {
+                // EINVAL: An incomplete multibyte sequence has been encoun­tered in the input.
+                // We'll just truncate it and ignore it.
+                break;
+            }
+            
+            if (errno != E2BIG) {
+                // An invalid multibyte sequence has been encountered in the input.
+                // Bad input, we can't really recover from this.
+                LOG_ERROR(ICONV_FAILURE) << "Failed to convert from UTF-8-MAC to UTF-8: invalid multibyte sequence" << LOG_END
+                break;
+            }
+            // E2BIG: There is not sufficient room at *outbuf.
+            // We just need to try again.
+        } while (1);
+        return output;
+    }
+    
+private:
+    static iconv_t s_iconv_handle;
+};
+
+iconv_t UTFConverter::s_iconv_handle = (iconv_t)-1;
+
+#endif //__APPLE__
+
 
 namespace rsync
 {
@@ -773,7 +773,10 @@ bool PathUtil::exists(const char *fullPath)
 
 bool PathUtil::remove(const char *fullPath, bool /*enableLogging*/, bool /*sendToRecyleBin*/)
 {
-    ::remove(fullPath);
+    if(::remove(fullPath)) {
+        LOG_ERROR(RSYNC_REMOVE) << "Can't remove " << fullPath << ": " << strerror(errno) << LOG_END
+        return false;
+    }
     return true;
 }
 
@@ -868,11 +871,11 @@ void PathUtil::listDirectory(const char *top, const char *path, std::vector<Entr
 
         std::string file;
         if (normalization) {
-//#ifdef __APPLE__
-//            file = currentPath + UTFConverter::convert(dirEntry->d_name);
-//#else
+#ifdef __APPLE__
+            file = currentPath + UTFConverter::convert(dirEntry->d_name);
+#else
             file = currentPath + dirEntry->d_name;
-//#endif
+#endif
         } else {
             file = currentPath + dirEntry->d_name;
         }

@@ -6,9 +6,9 @@
 srcdir = .
 
 # Programs used by "make":
-CC = xcrun -sdk iphoneos gcc -arch armv7s
-CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk
-CPPFLAGS = 
+CC = xcrun -sdk iphonesimulator clang -arch x86_64
+CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
+CPPFLAGS = -I/Users/Zheng/Desktop/iconv-libs/x86_64/include
 LDFLAGS = 
 INCLUDES = -I. -I$(srcdir) -I../include -I$(srcdir)/../include -I../srclib -I$(srcdir)/../srclib -I../lib
 LIBTOOL = /bin/sh $(top_builddir)/libtool

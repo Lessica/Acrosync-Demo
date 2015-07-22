@@ -385,6 +385,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/Acrosync Demo/libs/libssh2-1.6.0/include\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/openssl-1.0.1p/include\"",
+					"\"$(SRCROOT)/Acrosync Demo/libs/libiconv-1.14/include\"",
 				);
 				INFOPLIST_FILE = "Acrosync Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -393,6 +394,7 @@
 					"\"$(SRCROOT)/Acrosync Demo/libs/openssl-libs\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/ssh-libs\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/z-libs\"",
+					"\"$(SRCROOT)/Acrosync Demo/libs/iconv-libs\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
@@ -400,6 +402,7 @@
 					"-lssh2",
 					"-lz",
 					"-lcrypto",
+					"-liconv",
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.darwindev.Acrosync-Demo";
@@ -422,6 +425,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/Acrosync Demo/libs/libssh2-1.6.0/include\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/openssl-1.0.1p/include\"",
+					"\"$(SRCROOT)/Acrosync Demo/libs/libiconv-1.14/include\"",
 				);
 				INFOPLIST_FILE = "Acrosync Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -430,6 +434,7 @@
 					"\"$(SRCROOT)/Acrosync Demo/libs/openssl-libs\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/ssh-libs\"",
 					"\"$(SRCROOT)/Acrosync Demo/libs/z-libs\"",
+					"\"$(SRCROOT)/Acrosync Demo/libs/iconv-libs\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
@@ -438,6 +443,7 @@
 					"-lssh2",
 					"-lz",
 					"-lcrypto",
+					"-liconv",
 				);
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.darwindev.Acrosync-Demo";

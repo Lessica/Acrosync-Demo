@@ -96,4 +96,3 @@ struct PathUtil
 } // close namespace rsync
 
 #endif // INCLUDED_RSYNC_PATHUTIL_H
-

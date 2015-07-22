@@ -56,7 +56,7 @@ DLLTOOL="false"
 OBJDUMP="false"
 
 # Whether or not to build shared libraries.
-build_libtool_libs=yes
+build_libtool_libs=no
 
 # What type of objects to build.
 pic_mode=default
@@ -71,8 +71,8 @@ SHELL="/bin/sh"
 ECHO="printf %s\\n"
 
 # The host system.
-host_alias=arm-apple-darwin
-host=arm-apple-darwin
+host_alias=x86_64-apple-darwin
+host=x86_64-apple-darwin
 host_os=darwin
 
 # The build system.
@@ -161,10 +161,10 @@ old_postuninstall_cmds=""
 lock_old_archive_extraction=yes
 
 # A C compiler.
-LTCC="xcrun -sdk iphoneos gcc -arch armv7s"
+LTCC="xcrun -sdk iphonesimulator clang -arch x86_64"
 
 # LTCC compiler flags.
-LTCFLAGS="-miphoneos-version-min=7.0 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk"
+LTCFLAGS="-miphoneos-version-min=7.0 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk"
 
 # Take the output of nm and produce a listing of raw symbols and C names.
 global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([BCDEGRST][BCDEGRST]*\\)[	 ][	 ]*_\\([_A-Za-z][_A-Za-z0-9]*\\)\$/\\1 _\\2 \\2/p' | sed '/ __gnu_lto/d'"
@@ -302,7 +302,7 @@ reload_cmds="\$LTCC \$LTCFLAGS -nostdlib \${wl}-r -o \$output\$reload_objs"
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$oldlib"
 
 # A language specific compiler.
-CC="xcrun -sdk iphoneos gcc -arch armv7s"
+CC="xcrun -sdk iphonesimulator clang -arch x86_64"
 
 # Is the compiler the GNU compiler?
 with_gcc=yes

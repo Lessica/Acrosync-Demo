@@ -22,7 +22,7 @@ srcdir = .
 top_srcdir = ..
 
 
-prefix = /Users/Zheng/Desktop/iconv-libs/armv7s
+prefix = /Users/Zheng/Desktop/iconv-libs/x86_64
 exec_prefix = ${prefix}
 datarootdir = ${prefix}/share
 datadir = ${datarootdir}
