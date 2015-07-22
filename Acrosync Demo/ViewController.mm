@@ -173,7 +173,7 @@ NSTimer *_timer;
             io.connect(server, port, user, password, module.c_str());
             rsync::Client client(&io, "rsync", 29, &g_cancelFlag);
             
-            client.setSpeedLimits(64, 64);
+            client.setSpeedLimits(512, 512);
             client.setStatsAddresses(&totalBytes, &physicalBytes, &logicalBytes, &skippedBytes);
             
             transfer = YES;

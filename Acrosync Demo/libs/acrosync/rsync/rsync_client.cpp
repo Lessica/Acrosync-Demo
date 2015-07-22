@@ -1633,7 +1633,11 @@ namespace rsync
             command += " ";
         }
         
-        command += "-tude. . ";
+        if (isDownloading) {
+            command += "-tude. . ";
+        } else {
+            command += "-tde. . ";
+        }
         
         if (*remotePath == 0) {
             command += "\"\"";
