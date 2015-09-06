@@ -149,7 +149,7 @@ NSTimer *_timer;
             
             NSLog(@"Connect %s:%d...", server, port);
             sshio.connect(server, port, user, password, 0, 0);
-            rsync::Client client(&sshio, "rsync", 32, &g_cancelFlag);
+            rsync::Client client(&sshio, "rsync", 30, &g_cancelFlag);
             
             client.setSpeedLimits(50, 50);
             client.setStatsAddresses(&totalBytes, &physicalBytes, &logicalBytes, &skippedBytes);
@@ -171,7 +171,7 @@ NSTimer *_timer;
             
             NSLog(@"Connect %s:%d...", server, port);
             io.connect(server, port, user, password, module.c_str());
-            rsync::Client client(&io, "rsync", 29, &g_cancelFlag);
+            rsync::Client client(&io, "rsync", 30, &g_cancelFlag);
             
             client.setSpeedLimits(512, 512);
             client.setStatsAddresses(&totalBytes, &physicalBytes, &logicalBytes, &skippedBytes);
