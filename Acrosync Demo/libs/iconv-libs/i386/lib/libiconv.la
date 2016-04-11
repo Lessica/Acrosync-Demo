@@ -5,10 +5,10 @@
 # It is necessary for linking the library.
 
 # The name that we can dlopen(3).
-dlname=''
+dlname='libiconv.2.dylib'
 
 # Names of this library.
-library_names=''
+library_names='libiconv.2.dylib libiconv.dylib'
 
 # The name of the static archive.
 old_library='libiconv.a'

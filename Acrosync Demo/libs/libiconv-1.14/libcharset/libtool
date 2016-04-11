@@ -53,7 +53,7 @@ DLLTOOL="false"
 OBJDUMP="false"
 
 # Whether or not to build shared libraries.
-build_libtool_libs=no
+build_libtool_libs=yes
 
 # Whether or not to build static libraries.
 build_old_libs=yes
@@ -71,14 +71,14 @@ SHELL="/bin/sh"
 ECHO="printf %s\\n"
 
 # The host system.
-host_alias=x86_64-apple-darwin
-host=x86_64-apple-darwin
-host_os=darwin
+host_alias=x86_64-apple-darwin13.0.0
+host=x86_64-apple-darwin13.0.0
+host_os=darwin13.0.0
 
 # The build system.
-build_alias=
-build=i386-apple-darwin15.0.0
-build_os=darwin15.0.0
+build_alias=x86_64-apple-darwin13.0.0
+build=x86_64-apple-darwin13.0.0
+build_os=darwin13.0.0
 
 # A sed program that does not truncate output.
 SED="/opt/local/bin/gsed"
@@ -96,7 +96,7 @@ EGREP="/usr/bin/grep -E"
 FGREP="/usr/bin/grep -F"
 
 # A BSD- or MS-compatible name lister.
-NM="nm"
+NM="/usr/bin/nm -B"
 
 # Whether we need soft or hard links.
 LN_S="ln -s"
@@ -164,7 +164,7 @@ lock_old_archive_extraction=yes
 LTCC="xcrun -sdk iphonesimulator clang -arch x86_64"
 
 # LTCC compiler flags.
-LTCFLAGS="-miphoneos-version-min=7.0 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk"
+LTCFLAGS="-miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iphonesimulator.sdk -fembed-bitcode -m64"
 
 # Take the output of nm and produce a listing of raw symbols and C names.
 global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([BCDEGRST][BCDEGRST]*\\)[	 ][	 ]*_\\([_A-Za-z][_A-Za-z0-9]*\\)\$/\\1 _\\2 \\2/p' | sed '/ __gnu_lto/d'"
@@ -272,7 +272,7 @@ finish_eval=""
 hardcode_into_libs=no
 
 # Compile-time system search path for libraries.
-sys_lib_search_path_spec="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.0  /usr/local/lib"
+sys_lib_search_path_spec="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.3.0  /usr/local/lib"
 
 # Run-time system search path for libraries.
 sys_lib_dlsearch_path_spec="/usr/local/lib /lib /usr/lib"
@@ -292,7 +292,7 @@ striplib="strip -x"
 
 
 # The linker used to build libraries.
-LD="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld"
+LD="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld"
 
 # How to create reloadable object files.
 reload_flag=" -r"
@@ -356,7 +356,7 @@ module_expsym_cmds="sed -e 's,^,_,' < \$export_symbols > \$output_objdir/\${libn
 with_gnu_ld="no"
 
 # Flag that allows shared libraries with undefined symbols to be built.
-allow_undefined_flag="\${wl}-flat_namespace \${wl}-undefined \${wl}suppress"
+allow_undefined_flag="\${wl}-undefined \${wl}dynamic_lookup"
 
 # Flag that enforces no undefined symbols.
 no_undefined_flag=""

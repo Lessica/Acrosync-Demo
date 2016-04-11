@@ -1,4 +1,4 @@
-prefix=/Users/Zheng/Desktop/z-libs/arm64
+prefix=/Users/Zheng/Desktop/z-libs/x86_64
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 sharedlibdir=${libdir}

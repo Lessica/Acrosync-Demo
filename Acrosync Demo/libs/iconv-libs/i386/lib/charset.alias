@@ -1,5 +1,5 @@
 # This file contains a table of character encoding aliases,
-# suitable for operating system 'darwin'.
+# suitable for operating system 'darwin13.0.0'.
 # It was automatically generated from config.charset.
 # Packages using this file:  
 ISO8859-1 ISO-8859-1

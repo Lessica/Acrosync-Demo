@@ -18,8 +18,8 @@ localedir = ${datarootdir}/locale
 
 # Programs used by "make":
 CC = xcrun -sdk iphonesimulator clang -arch x86_64
-CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk
-CPPFLAGS = -I/Users/Zheng/Desktop/iconv-libs/x86_64/include
+CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iphonesimulator.sdk -fembed-bitcode -m64
+CPPFLAGS = 
 LDFLAGS = 
 INCLUDES = -I. -I$(srcdir) -I.. -I../include -I$(srcdir)/../include -I../srclib -I$(srcdir)/../srclib
 LIBTOOL = /bin/sh $(top_builddir)/libtool
@@ -55,7 +55,7 @@ top_builddir = ..
 EXEEXT = 
 
 # Needed by RELOCATABLE_LDFLAGS.
-host = x86_64-apple-darwin
+host = x86_64-apple-darwin13.0.0
 
 OBJECTS_RES_yes = iconv.res
 OBJECTS_RES_no =
@@ -111,7 +111,7 @@ iconv_LDFLAGS = `if test -n '$(RELOCATABLE_LDFLAGS)'; then $(RELOCATABLE_LDFLAGS
 # ../lib/libiconv.la entirely.
 install : all force
 	if [ ! -d $(DESTDIR)$(bindir) ] ; then $(mkinstalldirs) $(DESTDIR)$(bindir) ; fi
-	case "darwin" in \
+	case "darwin13.0.0" in \
 	  hpux*) $(CC) $(LDFLAGS) $(CFLAGS) $(iconv_LDFLAGS) iconv.o ../srclib/libicrt.a -L$(DESTDIR)$(libdir) -liconv  $(OBJECTS_RES_no) `if test -n '$(DESTDIR)'; then echo " -Wl,+b -Wl,$(libdir)"; fi` -o iconv$(EXEEXT);; \
 	  *) $(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) $(iconv_LDFLAGS) iconv.o ../srclib/libicrt.a $(DESTDIR)$(libdir)/libiconv.la  $(OBJECTS_RES_no) -o iconv$(EXEEXT);; \
 	esac

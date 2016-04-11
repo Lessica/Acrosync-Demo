@@ -13,7 +13,7 @@ libdir = ${exec_prefix}/lib
 
 # Programs used by "make":
 CC = xcrun -sdk iphonesimulator clang -arch x86_64
-CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -fvisibility=hidden
+CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iphonesimulator.sdk -fembed-bitcode -m64 -fvisibility=hidden
 CPPFLAGS = 
 LDFLAGS = 
 INCLUDES = -I. -I$(srcdir) -I.. -I$(srcdir)/.. -I../include
@@ -65,7 +65,7 @@ relocatable.lo : $(srcdir)/relocatable.c $(srcdir)/relocatable.h
 	$(LIBTOOL_COMPILE) $(CC) $(INCLUDES) $(CFLAGS) $(CPPFLAGS) $(DEFS) -c $(srcdir)/relocatable.c
 
 charset.alias: $(srcdir)/config.charset
-	$(SHELL) $(srcdir)/config.charset 'x86_64-apple-darwin' > t-$@
+	$(SHELL) $(srcdir)/config.charset 'x86_64-apple-darwin13.0.0' > t-$@
 	mv t-$@ $@
 
 ref-add.sed : $(srcdir)/ref-add.sin
@@ -96,7 +96,7 @@ install-lib : all force
 
 install : all force
 	if test no = no; then \
-	  case 'darwin' in \
+	  case 'darwin13.0.0' in \
 	    darwin[56]*) \
 	      need_charset_alias=true ;; \
 	    darwin* | cygwin* | mingw* | pw32* | cegcc*) \

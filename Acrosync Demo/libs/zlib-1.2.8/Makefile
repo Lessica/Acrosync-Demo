@@ -16,19 +16,19 @@
 # To install in $HOME instead of /usr/local, use:
 #    make install prefix=$HOME
 
-CC=xcrun -sdk iphonesimulator gcc -arch x86_64
+CC=xcrun -sdk iphoneos gcc -arch arm64
 
-CFLAGS=-miphoneos-version-min=7.0 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -arch x86_64 -DHAVE_HIDDEN
+CFLAGS=-miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iphoneos.platform/Developer/SDKs/iphoneos.sdk -arch arm64 -DHAVE_HIDDEN -fembed-bitcode
 #CFLAGS=-O -DMAX_WBITS=14 -DMAX_MEM_LEVEL=7
 #CFLAGS=-g -DDEBUG
 #CFLAGS=-O3 -Wall -Wwrite-strings -Wpointer-arith -Wconversion \
 #           -Wstrict-prototypes -Wmissing-prototypes
 
-SFLAGS=-miphoneos-version-min=7.0 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -arch x86_64 -fPIC -DHAVE_HIDDEN
-LDFLAGS= -arch x86_64
+SFLAGS=-miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iphoneos.platform/Developer/SDKs/iphoneos.sdk -arch arm64 -fPIC -DHAVE_HIDDEN -fembed-bitcode
+LDFLAGS= -arch arm64 -fembed-bitcode
 TEST_LDFLAGS=-L. libz.a
-LDSHARED=xcrun -sdk iphonesimulator gcc -arch x86_64 -dynamiclib -install_name ${exec_prefix}/lib/libz.1.dylib -compatibility_version 1 -current_version 1.2.8
-CPP=xcrun -sdk iphonesimulator gcc -arch x86_64 -E
+LDSHARED=xcrun -sdk iphoneos gcc -arch arm64 -dynamiclib -install_name ${exec_prefix}/lib/libz.1.dylib -compatibility_version 1 -current_version 1.2.8
+CPP=xcrun -sdk iphoneos gcc -arch arm64 -E
 
 STATICLIB=libz.a
 SHAREDLIB=libz.dylib
@@ -45,7 +45,7 @@ TAR=tar
 SHELL=/bin/sh
 EXE=
 
-prefix =/Users/Zheng/Desktop/z-libs/x86_64
+prefix =/Users/Zheng/Desktop/z-libs/arm64
 exec_prefix =${prefix}
 libdir =${exec_prefix}/lib
 sharedlibdir =${libdir}

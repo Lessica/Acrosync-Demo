@@ -2,7 +2,7 @@
 # libssh2 installation details
 ###########################################################################
 
-prefix=/Users/Zheng/Desktop/ssh-libs/i386
+prefix=/Users/Zheng/Desktop/ssh-libs/arm64
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
@@ -12,6 +12,6 @@ URL: http://www.libssh2.org/
 Description: Library for SSH-based communication
 Version: 1.6.0
 Requires.private: libssl,libcrypto,zlib
-Libs: -L${libdir} -lssh2 -arch i386 -miphoneos-version-min=7.0 
+Libs: -L${libdir} -lssh2  
 Libs.private: 
 Cflags: -I${includedir}

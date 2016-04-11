@@ -1,3 +1,0 @@
-isprefix.o: isprefix.c isprefix.h
-
-isprefix.h:

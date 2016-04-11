@@ -13,8 +13,8 @@ libdir = ${exec_prefix}/lib
 
 # Programs used by "make":
 CC = xcrun -sdk iphonesimulator clang -arch x86_64
-CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -fvisibility=hidden
-CPPFLAGS = -I/Users/Zheng/Desktop/iconv-libs/x86_64/include
+CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iphonesimulator.sdk -fembed-bitcode -m64 -fvisibility=hidden
+CPPFLAGS = 
 LDFLAGS =  $(LDFLAGS_no)
 LDFLAGS_yes = -Wl,--export-all-symbols
 LDFLAGS_no =
@@ -104,7 +104,7 @@ install-lib : all force
 install : all force
 	if [ ! -d $(DESTDIR)$(libdir) ] ; then $(mkinstalldirs) $(DESTDIR)$(libdir) ; fi
 	$(LIBTOOL_INSTALL) $(INSTALL_DATA) libiconv.la $(DESTDIR)$(libdir)/libiconv.la
-	case "darwin" in \
+	case "darwin13.0.0" in \
 	  aix*) (cd $(DESTDIR)$(libdir) && \
 	         objects=`ar t libiconv.a`" "`ar t /lib/libiconv.a` && \
 	         ar x libiconv.a && ar x /lib/libiconv.a && \
