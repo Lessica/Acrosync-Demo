@@ -71,8 +71,8 @@ SHELL="/bin/sh"
 ECHO="printf %s\\n"
 
 # The host system.
-host_alias=x86_64-apple-darwin13.0.0
-host=x86_64-apple-darwin13.0.0
+host_alias=arm-apple-darwin13.0.0
+host=arm-apple-darwin13.0.0
 host_os=darwin13.0.0
 
 # The build system.
@@ -96,7 +96,7 @@ EGREP="/usr/bin/grep -E"
 FGREP="/usr/bin/grep -F"
 
 # A BSD- or MS-compatible name lister.
-NM="/usr/bin/nm -B"
+NM="nm"
 
 # Whether we need soft or hard links.
 LN_S="ln -s"
@@ -161,10 +161,10 @@ old_postuninstall_cmds=""
 lock_old_archive_extraction=yes
 
 # A C compiler.
-LTCC="xcrun -sdk iphonesimulator clang -arch x86_64"
+LTCC="xcrun -sdk iphoneos clang -arch arm64"
 
 # LTCC compiler flags.
-LTCFLAGS="-miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iphonesimulator.sdk -fembed-bitcode -m64"
+LTCFLAGS="-miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iphoneos.sdk -fembed-bitcode -m64"
 
 # Take the output of nm and produce a listing of raw symbols and C names.
 global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([BCDEGRST][BCDEGRST]*\\)[	 ][	 ]*_\\([_A-Za-z][_A-Za-z0-9]*\\)\$/\\1 _\\2 \\2/p' | sed '/ __gnu_lto/d'"
@@ -302,7 +302,7 @@ reload_cmds="\$LTCC \$LTCFLAGS -nostdlib \${wl}-r -o \$output\$reload_objs"
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$oldlib"
 
 # A language specific compiler.
-CC="xcrun -sdk iphonesimulator clang -arch x86_64"
+CC="xcrun -sdk iphoneos clang -arch arm64"
 
 # Is the compiler the GNU compiler?
 with_gcc=yes

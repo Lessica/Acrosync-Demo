@@ -62,11 +62,11 @@
 #define HAVE_WCRTOMB 1
 
 /* Define to 1 if O_NOFOLLOW works. */
-#define HAVE_WORKING_O_NOFOLLOW 1
+#define HAVE_WORKING_O_NOFOLLOW 0
 
 /* Define if the machine's byte ordering is little endian. */
 #define WORDS_LITTLEENDIAN 1
 
 /* Define to the value of ${prefix}, as a string. */
-#define INSTALLPREFIX "/Users/Zheng/Desktop/iconv-libs/x86_64"
+#define INSTALLPREFIX "/Users/Zheng/Desktop/iconv-libs/arm64"
 

@@ -7,7 +7,7 @@
 srcdir = .
 
 # Directories used by "make install":
-prefix = /Users/Zheng/Desktop/iconv-libs/x86_64
+prefix = /Users/Zheng/Desktop/iconv-libs/arm64
 local_prefix = /usr/local
 exec_prefix = ${prefix}
 datarootdir = ${prefix}/share

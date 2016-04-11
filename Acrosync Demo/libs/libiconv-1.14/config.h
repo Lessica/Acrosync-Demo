@@ -672,10 +672,10 @@
 /* #undef HAVE_WINSOCK2_H */
 
 /* Define to 1 if O_NOATIME works. */
-#define HAVE_WORKING_O_NOATIME 1
+#define HAVE_WORKING_O_NOATIME 0
 
 /* Define to 1 if O_NOFOLLOW works. */
-#define HAVE_WORKING_O_NOFOLLOW 1
+#define HAVE_WORKING_O_NOFOLLOW 0
 
 /* Define to 1 if the system has the type `_Bool'. */
 #define HAVE__BOOL 1
@@ -687,7 +687,7 @@
 #define ICONV_CONST 
 
 /* Define to the value of ${prefix}, as a string. */
-#define INSTALLPREFIX "/Users/Zheng/Desktop/iconv-libs/x86_64"
+#define INSTALLPREFIX "/Users/Zheng/Desktop/iconv-libs/arm64"
 
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */
@@ -698,7 +698,7 @@
 #define LT_OBJDIR ".libs/"
 
 /* If malloc(0) is != NULL, define this to 1. Otherwise define this to 0. */
-#define MALLOC_0_IS_NONNULL 1
+#define MALLOC_0_IS_NONNULL 0
 
 /* Define to 1 if your C compiler doesn't accept -c and -o together. */
 /* #undef NO_MINUS_C_MINUS_O */

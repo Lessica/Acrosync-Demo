@@ -6,14 +6,14 @@
 srcdir = .
 
 # Directories used by "make install":
-prefix = /Users/Zheng/Desktop/iconv-libs/x86_64
+prefix = /Users/Zheng/Desktop/iconv-libs/arm64
 local_prefix = /usr/local
 exec_prefix = ${prefix}
 libdir = ${exec_prefix}/lib
 
 # Programs used by "make":
-CC = xcrun -sdk iphonesimulator clang -arch x86_64
-CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iphonesimulator.sdk -fembed-bitcode -m64 -fvisibility=hidden
+CC = xcrun -sdk iphoneos clang -arch arm64
+CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iphoneos.sdk -fembed-bitcode -m64 -fvisibility=hidden
 CPPFLAGS = 
 LDFLAGS = 
 INCLUDES = -I. -I$(srcdir) -I.. -I$(srcdir)/.. -I../include
@@ -65,7 +65,7 @@ relocatable.lo : $(srcdir)/relocatable.c $(srcdir)/relocatable.h
 	$(LIBTOOL_COMPILE) $(CC) $(INCLUDES) $(CFLAGS) $(CPPFLAGS) $(DEFS) -c $(srcdir)/relocatable.c
 
 charset.alias: $(srcdir)/config.charset
-	$(SHELL) $(srcdir)/config.charset 'x86_64-apple-darwin13.0.0' > t-$@
+	$(SHELL) $(srcdir)/config.charset 'arm-apple-darwin13.0.0' > t-$@
 	mv t-$@ $@
 
 ref-add.sed : $(srcdir)/ref-add.sin

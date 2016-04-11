@@ -7,7 +7,7 @@ srcdir = .
 top_srcdir = ..
 
 # Directories used by "make install":
-prefix = /Users/Zheng/Desktop/iconv-libs/x86_64
+prefix = /Users/Zheng/Desktop/iconv-libs/arm64
 local_prefix = /usr/local
 exec_prefix = ${prefix}
 bindir = ${exec_prefix}/bin
@@ -17,9 +17,9 @@ datadir = ${datarootdir}
 localedir = ${datarootdir}/locale
 
 # Programs used by "make":
-CC = xcrun -sdk iphonesimulator clang -arch x86_64
-CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iphonesimulator.sdk -fembed-bitcode -m64
-CPPFLAGS = 
+CC = xcrun -sdk iphoneos clang -arch arm64
+CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iphoneos.sdk -fembed-bitcode -m64
+CPPFLAGS = -I/Users/Zheng/Desktop/iconv-libs/arm64/include
 LDFLAGS = 
 INCLUDES = -I. -I$(srcdir) -I.. -I../include -I$(srcdir)/../include -I../srclib -I$(srcdir)/../srclib
 LIBTOOL = /bin/sh $(top_builddir)/libtool
@@ -55,7 +55,7 @@ top_builddir = ..
 EXEEXT = 
 
 # Needed by RELOCATABLE_LDFLAGS.
-host = x86_64-apple-darwin13.0.0
+host = arm-apple-darwin13.0.0
 
 OBJECTS_RES_yes = iconv.res
 OBJECTS_RES_no =

@@ -203,7 +203,7 @@
 		0F6AAFD51B5894A800A3035D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Zheng;
 				TargetAttributes = {
 					0F6AAFDC1B5894A800A3035D = {
@@ -319,7 +319,7 @@
 				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-static";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

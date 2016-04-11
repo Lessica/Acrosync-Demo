@@ -6,15 +6,15 @@
 srcdir = .
 
 # Directories used by "make install":
-prefix = /Users/Zheng/Desktop/iconv-libs/x86_64
+prefix = /Users/Zheng/Desktop/iconv-libs/arm64
 local_prefix = /usr/local
 exec_prefix = ${prefix}
 libdir = ${exec_prefix}/lib
 
 # Programs used by "make":
-CC = xcrun -sdk iphonesimulator clang -arch x86_64
-CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iphonesimulator.sdk -fembed-bitcode -m64 -fvisibility=hidden
-CPPFLAGS = 
+CC = xcrun -sdk iphoneos clang -arch arm64
+CFLAGS = -miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iphoneos.sdk -fembed-bitcode -m64 -fvisibility=hidden
+CPPFLAGS = -I/Users/Zheng/Desktop/iconv-libs/arm64/include
 LDFLAGS =  $(LDFLAGS_no)
 LDFLAGS_yes = -Wl,--export-all-symbols
 LDFLAGS_no =

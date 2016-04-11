@@ -45,13 +45,13 @@
 #define HAVE_VISIBILITY 1
 
 /* Define to 1 if O_NOATIME works. */
-#define HAVE_WORKING_O_NOATIME 1
+#define HAVE_WORKING_O_NOATIME 0
 
 /* Define to 1 if O_NOFOLLOW works. */
-#define HAVE_WORKING_O_NOFOLLOW 1
+#define HAVE_WORKING_O_NOFOLLOW 0
 
 /* Define to the value of ${prefix}, as a string. */
-#define INSTALLPREFIX "/Users/Zheng/Desktop/iconv-libs/x86_64"
+#define INSTALLPREFIX "/Users/Zheng/Desktop/iconv-libs/arm64"
 
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
    */
