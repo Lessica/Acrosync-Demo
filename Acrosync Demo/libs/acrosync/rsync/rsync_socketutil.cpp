@@ -245,13 +245,13 @@ int SocketUtil::read(int socket, char *buffer, int size)
     int rc = static_cast<int>(::read(socket, buffer, size));
     if (rc == -1) {
         if (errno != EAGAIN) {
-            LOG_ERROR(RSYNC_SOCKET) << "Error reading from socket: " << Util::getLastError() << LOG_END
+            LOG_FATAL(RSYNC_SOCKET) << "Error reading from socket: " << Util::getLastError() << LOG_END
             return -1;
         } else {
             return 0;
         }
     } else if (rc == 0) {
-        LOG_ERROR(RSYNC_SOCKET) << "Socket was closed unexpectedly" << LOG_END
+        LOG_FATAL(RSYNC_SOCKET) << "Socket was closed unexpectedly" << LOG_END
         return -1;
     }
     return rc;
@@ -262,13 +262,13 @@ int SocketUtil::write(int socket, const char *buffer, int size)
     int rc = static_cast<int>(::write(socket, buffer, size));
     if (rc == -1) {
         if (errno != EAGAIN) {
-            LOG_ERROR(RSYNC_SOCKET) << "Error writing to socket: " << Util::getLastError() << LOG_END
+            LOG_FATAL(RSYNC_SOCKET) << "Error writing to socket: " << Util::getLastError() << LOG_END
             return -1;
         } else {
             return 0;
         }
     } else if (rc == 0) {
-        LOG_ERROR(RSYNC_SOCKET) << "Socket was closed unexpectedly" << LOG_END
+        LOG_FATAL(RSYNC_SOCKET) << "Socket was closed unexpectedly" << LOG_END
         return -1;
     }
     return rc;

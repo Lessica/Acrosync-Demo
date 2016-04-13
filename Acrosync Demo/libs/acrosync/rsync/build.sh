@@ -3,9 +3,9 @@
 mkdir obj
 BASE=$(cd `dirname $0`; pwd)
 LIBS="../../acrosync-libs"
-ARCH="x86_64"
-CC="xcrun -sdk iphonesimulator clang -arch "
-CFLAGS="-miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iphonesimulator.sdk -fembed-bitcode -isystem $BASE/../../openssl-libs/x86_64/include -isystem $BASE/../../ssh-libs/x86_64/include"
+ARCH="arm64"
+CC="xcrun -sdk iphoneos clang -arch "
+CFLAGS="-miphoneos-version-min=7.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -fembed-bitcode -isystem $BASE/../../openssl-libs/arm64/include -isystem $BASE/../../ssh-libs/arm64/include"
 
 
 $CC $ARCH $CFLAGS -c ./rsync_client.cpp -o obj/rsync_client.o
@@ -22,5 +22,5 @@ $CC $ARCH $CFLAGS -c ./rsync_timeutil.cpp -o obj/rsync_timeutil.o
 $CC $ARCH $CFLAGS -c ./rsync_util.cpp -o obj/rsync_util.o
 
 mkdir -p "$LIBS/$ARCH"
-ar cru "$LIBS/$ARCH/librsync.a" obj/*.o
+ar cru "$LIBS/$ARCH/libacrosync.a" obj/*.o
 
